@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.rest.micronaut
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, gradle, h2, http-client, java, java-application, jax-rs, junit, logback, netty-server, readme, shade, yaml]

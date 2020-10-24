@@ -1,0 +1,39 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "io.micronaut.application" version '1.0.3'
+}
+
+version "0.1"
+group "com.rest.micronaut"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+micronaut {
+    runtime "netty"
+    testRuntime "junit5"
+    processing {
+        incremental true
+        annotations "com.rest.micronaut.*"
+    }
+}
+
+
+dependencies {
+	annotationProcessor("io.micronaut:micronaut-inject-java")
+    annotationProcessor("org.projectlombok:lombok:1.18.16")
+    implementation("io.micronaut:micronaut-http-server-netty")
+    compileOnly "org.projectlombok:lombok:1.18.16"
+}
+
+mainClassName = "com.rest.micronaut.Application"
+java {
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
+}
+
+
+
+
