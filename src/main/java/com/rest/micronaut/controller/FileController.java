@@ -2,7 +2,10 @@ package com.rest.micronaut.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import com.rest.micronaut.Model.FileDetail;
+import com.rest.micronaut.service.FileService;
 
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -12,6 +15,9 @@ import io.micronaut.http.annotation.Post;
 
 @Controller("/files")
 public class FileController {
+
+	@Inject
+	private FileService fileService;
 
 	@Get
 	public List<FileDetail> getAllFiles() {
@@ -43,6 +49,7 @@ public class FileController {
 	@Delete("/{id}")
 	public void deleteFileDetail(Long id) {
 		// TODO: Logic to delete record from DB
+		System.out.println(fileService);
 	}
 
 }
