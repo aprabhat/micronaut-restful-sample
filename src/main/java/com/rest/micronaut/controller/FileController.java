@@ -21,9 +21,7 @@ public class FileController {
 
 	@Get
 	public List<FileDetail> getAllFiles() {
-		// TODO: Logic to fetch file details from DB
-		List<FileDetail> fileDetails = null;
-		return fileDetails;
+		return fileService.getAllFiles();
 	}
 
 	@Get("/{id}")
@@ -36,12 +34,12 @@ public class FileController {
 
 	@Post
 	public FileDetail saveFileDetails(@Body FileDetail fileDetail) {
-		// TODO: Logic to persist file details in DB
+		fileService.saveFileDetails(fileDetail);
 		return fileDetail;
 	}
 
-	@Post
-	public FileDetail updateFileDetails(@Body FileDetail fileDetail) {
+	@Post("/{id}")
+	public FileDetail updateFileDetails(Long id, @Body FileDetail fileDetail) {
 		// TODO: Logic to update file details in DB
 		return fileDetail;
 	}

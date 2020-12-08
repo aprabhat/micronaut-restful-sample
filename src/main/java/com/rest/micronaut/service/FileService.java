@@ -19,8 +19,7 @@ import io.micronaut.http.annotation.Body;
 public class FileService {
 	@Inject
 	private FileRepository fileRepository;
-	@Inject
-	private ModelMapper mapper;
+	private ModelMapper mapper = new ModelMapper();
 
 	public List<FileDetail> getAllFiles() {
 		Iterable<FileEntity> fileEntities = fileRepository.findAll();
@@ -32,13 +31,14 @@ public class FileService {
 
 	public FileDetail getFile(Long id) {
 		// TODO: Logic to fetch file details from DB
-		FileDetail fileDetail = null;
+		FileDetail fileDetail = new FileDetail();
 		System.out.println(id);
 		return fileDetail;
 	}
 
 	public FileDetail saveFileDetails(FileDetail fileDetail) {
 		FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
+		System.out.println(fileEntity.getId());
 		FileEntity savedFileEntity = fileRepository.save(fileEntity);
 		fileDetail.setId(savedFileEntity.getId());
 		return fileDetail;

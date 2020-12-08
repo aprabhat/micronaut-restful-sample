@@ -22,12 +22,18 @@ micronaut {
 
 
 dependencies {
-	annotationProcessor("io.micronaut:micronaut-inject-java")
     annotationProcessor("org.projectlombok:lombok:1.18.16")
-    implementation("io.micronaut:micronaut-http-server-netty")
-    implementation("org.modelmapper:modelmapper:2.3.8")
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("org.modelmapper:modelmapper:2.3.8")
+    
     compileOnly "org.projectlombok:lombok:1.18.16"
+    
+    runtimeOnly("com.h2database:h2")
 }
 
 mainClassName = "com.rest.micronaut.Application"
