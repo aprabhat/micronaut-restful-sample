@@ -30,17 +30,18 @@ public class FileService {
 	}
 
 	public FileDetail getFile(Long id) {
-		// TODO: Logic to fetch file details from DB
-		FileDetail fileDetail = new FileDetail();
-		System.out.println(id);
-		return fileDetail;
+		FileEntity fileEntity = fileRepository.findByFileId(id);
+		if (fileEntity != null) {
+			return mapper.map(fileEntity, FileDetail.class);
+		}
+		return null;
 	}
 
 	public FileDetail saveFileDetails(FileDetail fileDetail) {
 		FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
-		System.out.println(fileEntity.getId());
+		System.out.println(fileEntity.getFileId());
 		FileEntity savedFileEntity = fileRepository.save(fileEntity);
-		fileDetail.setId(savedFileEntity.getId());
+		fileDetail.setFileId(savedFileEntity.getFileId());
 		return fileDetail;
 	}
 
@@ -49,6 +50,6 @@ public class FileService {
 	}
 
 	public void deleteFileDetail(Long id) {
-		fileRepository.deleteById(id);
+		fileRepository.deleteByFileId(id);
 	}
 }
