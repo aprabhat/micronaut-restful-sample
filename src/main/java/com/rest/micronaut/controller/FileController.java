@@ -26,28 +26,23 @@ public class FileController {
 
 	@Get("/{id}")
 	public FileDetail getFile(Long id) {
-		// TODO: Logic to fetch file details from DB
-		FileDetail fileDetail = null;
 		System.out.println(id);
-		return fileDetail;
+		return fileService.getFile(id);
 	}
 
 	@Post
 	public FileDetail saveFileDetails(@Body FileDetail fileDetail) {
-		fileService.saveFileDetails(fileDetail);
-		return fileDetail;
+		return fileService.saveFileDetails(fileDetail);
 	}
 
 	@Post("/{id}")
 	public FileDetail updateFileDetails(Long id, @Body FileDetail fileDetail) {
-		// TODO: Logic to update file details in DB
-		return fileDetail;
+		return fileService.saveFileDetails(fileDetail);
 	}
 
 	@Delete("/{id}")
 	public void deleteFileDetail(Long id) {
-		// TODO: Logic to delete record from DB
-		System.out.println(fileService);
+		fileService.deleteFileDetail(id);
 	}
 
 }

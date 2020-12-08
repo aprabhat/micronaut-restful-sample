@@ -1,6 +1,6 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "6.0.0"
-    id "io.micronaut.application" version '1.0.3'
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("io.micronaut.application") version "1.2.0"
 }
 
 version "0.1"
@@ -12,11 +12,11 @@ repositories {
 }
 
 micronaut {
-    runtime "netty"
-    testRuntime "junit5"
+    runtime("netty")
+    testRuntime("junit5")
     processing {
-        incremental true
-        annotations "com.rest.micronaut.*"
+        incremental(true)
+        annotations("com.rest.micronaut.*")
     }
 }
 
