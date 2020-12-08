@@ -16,6 +16,8 @@ jpa:
     - com.rest.micronaut
     properties:
       hibernate:
+        bytecode:
+          provider: none
         hbm2ddl:
           auto: update
         show_sql: true
