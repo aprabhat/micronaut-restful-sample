@@ -8,3 +8,5 @@
 
 - [Micronaut JAX-RS support documentation](https://micronaut-projects.github.io/micronaut-jaxrs/latest/guide/index.html)
 
+## Feature micronaut hibernate configuration documentation
+- [Micronaut Configuring Hibernate](https://docs.micronaut.io/latest/guide/index.html#hibernateSupport)
