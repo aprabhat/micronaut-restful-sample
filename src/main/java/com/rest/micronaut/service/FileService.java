@@ -2,6 +2,7 @@ package com.rest.micronaut.service;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -9,11 +10,9 @@ import javax.inject.Singleton;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 
-import com.rest.micronaut.Entity.FileEntity;
-import com.rest.micronaut.Model.FileDetail;
+import com.rest.micronaut.entity.FileEntity;
+import com.rest.micronaut.model.FileDetail;
 import com.rest.micronaut.repository.FileRepository;
-
-import io.micronaut.http.annotation.Body;
 
 @Singleton
 public class FileService {
@@ -30,26 +29,33 @@ public class FileService {
 	}
 
 	public FileDetail getFile(Long id) {
-		FileEntity fileEntity = fileRepository.findByFileId(id);
-		if (fileEntity != null) {
-			return mapper.map(fileEntity, FileDetail.class);
+		Optional<FileEntity> fileEntity = fileRepository.findById(id);
+		if (fileEntity.isPresent()) {
+			return mapper.map(fileEntity.get(), FileDetail.class);
 		}
 		return null;
 	}
 
 	public FileDetail saveFileDetails(FileDetail fileDetail) {
 		FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
-		System.out.println(fileEntity.getFileId());
+		System.out.println(fileEntity.getId());
 		FileEntity savedFileEntity = fileRepository.save(fileEntity);
-		fileDetail.setFileId(savedFileEntity.getFileId());
+		fileDetail.setId(savedFileEntity.getId());
 		return fileDetail;
 	}
 
-	public FileDetail updateFileDetails(@Body FileDetail fileDetail) {
-		return fileDetail;
+	public FileDetail updateFileDetails(Long id, FileDetail fileDetail) throws Exception {
+		boolean isExist = fileRepository.existsById(id);
+		if (isExist) {
+			fileDetail.setId(id);
+			FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
+			fileEntity = fileRepository.update(fileEntity);
+			return mapper.map(fileEntity, FileDetail.class);
+		}
+		throw new Exception("File not exist with id " + id);
 	}
 
 	public void deleteFileDetail(Long id) {
-		fileRepository.deleteByFileId(id);
+		fileRepository.deleteById(id);
 	}
 }

@@ -1,4 +1,4 @@
-package com.rest.micronaut.Entity;
+package com.rest.micronaut.entity;
 
 import java.io.Serializable;
 
@@ -19,7 +19,7 @@ public class FileEntity implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long fileId;
+	private Long id;
 	private String name;
 	private String path;
 }

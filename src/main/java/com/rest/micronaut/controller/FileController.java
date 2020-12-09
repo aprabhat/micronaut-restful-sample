@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.rest.micronaut.Model.FileDetail;
+import com.rest.micronaut.model.FileDetail;
 import com.rest.micronaut.service.FileService;
 
 import io.micronaut.http.annotation.Body;
@@ -36,8 +36,8 @@ public class FileController {
 	}
 
 	@Post("/{id}")
-	public FileDetail updateFileDetails(Long id, @Body FileDetail fileDetail) {
-		return fileService.saveFileDetails(fileDetail);
+	public FileDetail updateFileDetails(Long id, @Body FileDetail fileDetail) throws Exception {
+		return fileService.updateFileDetails(id, fileDetail);
 	}
 
 	@Delete("/{id}")
