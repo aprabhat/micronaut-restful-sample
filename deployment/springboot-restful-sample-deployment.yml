@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micronaut-restful-sample
+  labels:
+    app: micronaut-restful-sample
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: micronaut-restful-sample
+  template:
+    metadata:
+      labels:
+        app: micronaut-restful-sample
+    spec:
+      containers:
+      - name: micronaut-restful-sample
+        image: aprabhat/micronaut-restful-sample:v1.0
+        resources:
+          limits:
+            cpu: 1
+            memory: 512Mi
+          requests:
+            cpu: 0.5
+            memory: 256Mi
+        ports:
+        - containerPort: 8080
