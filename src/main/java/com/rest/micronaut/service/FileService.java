@@ -18,7 +18,8 @@ import com.rest.micronaut.repository.FileRepository;
 public class FileService {
 	@Inject
 	private FileRepository fileRepository;
-	private ModelMapper mapper = new ModelMapper();
+	@Inject
+	private ModelMapper mapper;
 
 	public List<FileDetail> getAllFiles() {
 		Iterable<FileEntity> fileEntities = fileRepository.findAll();

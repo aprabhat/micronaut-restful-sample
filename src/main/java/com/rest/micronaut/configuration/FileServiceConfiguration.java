@@ -4,11 +4,11 @@ import javax.inject.Singleton;
 
 import org.modelmapper.ModelMapper;
 
-import io.micronaut.context.annotation.Bean;
+import io.micronaut.context.annotation.Factory;
 
-@Singleton
+@Factory
 public class FileServiceConfiguration {
-	@Bean
+	@Singleton
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
