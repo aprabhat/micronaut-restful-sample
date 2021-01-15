@@ -17,20 +17,19 @@ import com.rest.micronaut.repository.EmployeeRepository;
 @Singleton
 public class EmployeeService {
 	@Inject
-	private EmployeeRepository fileRepository;
+	private EmployeeRepository employeeRepository;
 	@Inject
 	private ModelMapper mapper;
 
 	public List<EmployeeDetails> getAllEmployees() {
-		Iterable<Employee> fileEntities = fileRepository.findAll();
+		Iterable<Employee> employees = employeeRepository.findAll();
 		Type type = new TypeToken<List<EmployeeDetails>>() {
 		}.getType();
-		List<EmployeeDetails> EmployeeDetailss = mapper.map(fileEntities, type);
-		return EmployeeDetailss;
+		return mapper.map(employees, type);
 	}
 
 	public EmployeeDetails getEmployee(Long id) {
-		Optional<Employee> Employee = fileRepository.findById(id);
+		Optional<Employee> Employee = employeeRepository.findById(id);
 		if (Employee.isPresent()) {
 			return mapper.map(Employee.get(), EmployeeDetails.class);
 		}
@@ -40,23 +39,23 @@ public class EmployeeService {
 	public EmployeeDetails saveEmployeeDetails(EmployeeDetails EmployeeDetails) {
 		Employee Employee = mapper.map(EmployeeDetails, Employee.class);
 		System.out.println(Employee.getId());
-		Employee savedEmployee = fileRepository.save(Employee);
+		Employee savedEmployee = employeeRepository.save(Employee);
 		EmployeeDetails.setId(savedEmployee.getId());
 		return EmployeeDetails;
 	}
 
 	public EmployeeDetails updateEmployeeDetails(Long id, EmployeeDetails EmployeeDetails) throws Exception {
-		boolean isExist = fileRepository.existsById(id);
+		boolean isExist = employeeRepository.existsById(id);
 		if (isExist) {
 			EmployeeDetails.setId(id);
 			Employee Employee = mapper.map(EmployeeDetails, Employee.class);
-			Employee = fileRepository.update(Employee);
+			Employee = employeeRepository.update(Employee);
 			return mapper.map(Employee, EmployeeDetails.class);
 		}
-		throw new Exception("File not exist with id " + id);
+		throw new Exception("Employee not exist with id " + id);
 	}
 
 	public void deleteEmployeeDetails(Long id) {
-		fileRepository.deleteById(id);
+		employeeRepository.deleteById(id);
 	}
 }

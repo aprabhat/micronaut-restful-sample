@@ -21,23 +21,23 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@Get
-	public List<EmployeeDetails> getAllFiles() {
+	public List<EmployeeDetails> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
 
 	@Get("/{id}")
-	public EmployeeDetails getFile(Long id) {
+	public EmployeeDetails getEmployee(Long id) {
 		System.out.println(id);
 		return employeeService.getEmployee(id);
 	}
 
 	@Post
-	public EmployeeDetails saveEmployeeDetailss(@Body EmployeeDetails EmployeeDetails) {
+	public EmployeeDetails saveEmployeeDetails(@Body EmployeeDetails EmployeeDetails) {
 		return employeeService.saveEmployeeDetails(EmployeeDetails);
 	}
 
 	@Put("/{id}")
-	public EmployeeDetails updateEmployeeDetailss(Long id, @Body EmployeeDetails EmployeeDetails) throws Exception {
+	public EmployeeDetails updateEmployeeDetails(Long id, @Body EmployeeDetails EmployeeDetails) throws Exception {
 		return employeeService.updateEmployeeDetails(id, EmployeeDetails);
 	}
 
