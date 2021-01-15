@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.rest.micronaut.model.FileDetail;
-import com.rest.micronaut.service.FileService;
+import com.rest.micronaut.service.EmployeeService;
 
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -14,10 +14,10 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 @Controller("/files")
-public class FileController {
+public class EmployeeController {
 
 	@Inject
-	private FileService fileService;
+	private EmployeeService fileService;
 
 	@Get
 	public List<FileDetail> getAllFiles() {

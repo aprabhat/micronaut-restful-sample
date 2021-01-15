@@ -15,7 +15,7 @@ import com.rest.micronaut.model.FileDetail;
 import com.rest.micronaut.repository.FileRepository;
 
 @Singleton
-public class FileService {
+public class EmployeeService {
 	@Inject
 	private FileRepository fileRepository;
 	@Inject
