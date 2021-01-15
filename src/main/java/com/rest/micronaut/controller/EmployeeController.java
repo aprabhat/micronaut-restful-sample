@@ -12,6 +12,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
 
 @Controller("/employees")
 public class EmployeeController {
@@ -21,23 +22,23 @@ public class EmployeeController {
 
 	@Get
 	public List<EmployeeDetails> getAllFiles() {
-		return employeeService.getAllFiles();
+		return employeeService.getAllEmployees();
 	}
 
 	@Get("/{id}")
 	public EmployeeDetails getFile(Long id) {
 		System.out.println(id);
-		return employeeService.getFile(id);
+		return employeeService.getEmployee(id);
 	}
 
 	@Post
 	public EmployeeDetails saveEmployeeDetailss(@Body EmployeeDetails EmployeeDetails) {
-		return employeeService.saveEmployeeDetailss(EmployeeDetails);
+		return employeeService.saveEmployeeDetails(EmployeeDetails);
 	}
 
-	@Post("/{id}")
+	@Put("/{id}")
 	public EmployeeDetails updateEmployeeDetailss(Long id, @Body EmployeeDetails EmployeeDetails) throws Exception {
-		return employeeService.updateEmployeeDetailss(id, EmployeeDetails);
+		return employeeService.updateEmployeeDetails(id, EmployeeDetails);
 	}
 
 	@Delete("/{id}")

@@ -12,16 +12,16 @@ import org.modelmapper.TypeToken;
 
 import com.rest.micronaut.entity.Employee;
 import com.rest.micronaut.model.EmployeeDetails;
-import com.rest.micronaut.repository.FileRepository;
+import com.rest.micronaut.repository.EmployeeRepository;
 
 @Singleton
 public class EmployeeService {
 	@Inject
-	private FileRepository fileRepository;
+	private EmployeeRepository fileRepository;
 	@Inject
 	private ModelMapper mapper;
 
-	public List<EmployeeDetails> getAllFiles() {
+	public List<EmployeeDetails> getAllEmployees() {
 		Iterable<Employee> fileEntities = fileRepository.findAll();
 		Type type = new TypeToken<List<EmployeeDetails>>() {
 		}.getType();
@@ -29,7 +29,7 @@ public class EmployeeService {
 		return EmployeeDetailss;
 	}
 
-	public EmployeeDetails getFile(Long id) {
+	public EmployeeDetails getEmployee(Long id) {
 		Optional<Employee> Employee = fileRepository.findById(id);
 		if (Employee.isPresent()) {
 			return mapper.map(Employee.get(), EmployeeDetails.class);
@@ -37,7 +37,7 @@ public class EmployeeService {
 		return null;
 	}
 
-	public EmployeeDetails saveEmployeeDetailss(EmployeeDetails EmployeeDetails) {
+	public EmployeeDetails saveEmployeeDetails(EmployeeDetails EmployeeDetails) {
 		Employee Employee = mapper.map(EmployeeDetails, Employee.class);
 		System.out.println(Employee.getId());
 		Employee savedEmployee = fileRepository.save(Employee);
@@ -45,7 +45,7 @@ public class EmployeeService {
 		return EmployeeDetails;
 	}
 
-	public EmployeeDetails updateEmployeeDetailss(Long id, EmployeeDetails EmployeeDetails) throws Exception {
+	public EmployeeDetails updateEmployeeDetails(Long id, EmployeeDetails EmployeeDetails) throws Exception {
 		boolean isExist = fileRepository.existsById(id);
 		if (isExist) {
 			EmployeeDetails.setId(id);
