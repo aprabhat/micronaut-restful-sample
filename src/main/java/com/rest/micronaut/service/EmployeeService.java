@@ -10,8 +10,8 @@ import javax.inject.Singleton;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 
-import com.rest.micronaut.entity.FileEntity;
-import com.rest.micronaut.model.FileDetail;
+import com.rest.micronaut.entity.Employee;
+import com.rest.micronaut.model.EmployeeDetails;
 import com.rest.micronaut.repository.FileRepository;
 
 @Singleton
@@ -21,42 +21,42 @@ public class EmployeeService {
 	@Inject
 	private ModelMapper mapper;
 
-	public List<FileDetail> getAllFiles() {
-		Iterable<FileEntity> fileEntities = fileRepository.findAll();
-		Type type = new TypeToken<List<FileDetail>>() {
+	public List<EmployeeDetails> getAllFiles() {
+		Iterable<Employee> fileEntities = fileRepository.findAll();
+		Type type = new TypeToken<List<EmployeeDetails>>() {
 		}.getType();
-		List<FileDetail> fileDetails = mapper.map(fileEntities, type);
-		return fileDetails;
+		List<EmployeeDetails> EmployeeDetailss = mapper.map(fileEntities, type);
+		return EmployeeDetailss;
 	}
 
-	public FileDetail getFile(Long id) {
-		Optional<FileEntity> fileEntity = fileRepository.findById(id);
-		if (fileEntity.isPresent()) {
-			return mapper.map(fileEntity.get(), FileDetail.class);
+	public EmployeeDetails getFile(Long id) {
+		Optional<Employee> Employee = fileRepository.findById(id);
+		if (Employee.isPresent()) {
+			return mapper.map(Employee.get(), EmployeeDetails.class);
 		}
 		return null;
 	}
 
-	public FileDetail saveFileDetails(FileDetail fileDetail) {
-		FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
-		System.out.println(fileEntity.getId());
-		FileEntity savedFileEntity = fileRepository.save(fileEntity);
-		fileDetail.setId(savedFileEntity.getId());
-		return fileDetail;
+	public EmployeeDetails saveEmployeeDetailss(EmployeeDetails EmployeeDetails) {
+		Employee Employee = mapper.map(EmployeeDetails, Employee.class);
+		System.out.println(Employee.getId());
+		Employee savedEmployee = fileRepository.save(Employee);
+		EmployeeDetails.setId(savedEmployee.getId());
+		return EmployeeDetails;
 	}
 
-	public FileDetail updateFileDetails(Long id, FileDetail fileDetail) throws Exception {
+	public EmployeeDetails updateEmployeeDetailss(Long id, EmployeeDetails EmployeeDetails) throws Exception {
 		boolean isExist = fileRepository.existsById(id);
 		if (isExist) {
-			fileDetail.setId(id);
-			FileEntity fileEntity = mapper.map(fileDetail, FileEntity.class);
-			fileEntity = fileRepository.update(fileEntity);
-			return mapper.map(fileEntity, FileDetail.class);
+			EmployeeDetails.setId(id);
+			Employee Employee = mapper.map(EmployeeDetails, Employee.class);
+			Employee = fileRepository.update(Employee);
+			return mapper.map(Employee, EmployeeDetails.class);
 		}
 		throw new Exception("File not exist with id " + id);
 	}
 
-	public void deleteFileDetail(Long id) {
+	public void deleteEmployeeDetails(Long id) {
 		fileRepository.deleteById(id);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.rest.micronaut.model.FileDetail;
+import com.rest.micronaut.model.EmployeeDetails;
 import com.rest.micronaut.service.EmployeeService;
 
 import io.micronaut.http.annotation.Body;
@@ -13,36 +13,36 @@ import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
-@Controller("/files")
+@Controller("/employees")
 public class EmployeeController {
 
 	@Inject
-	private EmployeeService fileService;
+	private EmployeeService employeeService;
 
 	@Get
-	public List<FileDetail> getAllFiles() {
-		return fileService.getAllFiles();
+	public List<EmployeeDetails> getAllFiles() {
+		return employeeService.getAllFiles();
 	}
 
 	@Get("/{id}")
-	public FileDetail getFile(Long id) {
+	public EmployeeDetails getFile(Long id) {
 		System.out.println(id);
-		return fileService.getFile(id);
+		return employeeService.getFile(id);
 	}
 
 	@Post
-	public FileDetail saveFileDetails(@Body FileDetail fileDetail) {
-		return fileService.saveFileDetails(fileDetail);
+	public EmployeeDetails saveEmployeeDetailss(@Body EmployeeDetails EmployeeDetails) {
+		return employeeService.saveEmployeeDetailss(EmployeeDetails);
 	}
 
 	@Post("/{id}")
-	public FileDetail updateFileDetails(Long id, @Body FileDetail fileDetail) throws Exception {
-		return fileService.updateFileDetails(id, fileDetail);
+	public EmployeeDetails updateEmployeeDetailss(Long id, @Body EmployeeDetails EmployeeDetails) throws Exception {
+		return employeeService.updateEmployeeDetailss(id, EmployeeDetails);
 	}
 
 	@Delete("/{id}")
-	public void deleteFileDetail(Long id) {
-		fileService.deleteFileDetail(id);
+	public void deleteEmployeeDetails(Long id) {
+		employeeService.deleteEmployeeDetails(id);
 	}
 
 }
