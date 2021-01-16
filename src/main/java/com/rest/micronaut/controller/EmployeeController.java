@@ -46,7 +46,6 @@ public class EmployeeController {
 		if(employeeService.isExist(id)) {
 			employeeService.deleteEmployeeDetails(id);
 		}
-		return null;
 	}
 
 }
