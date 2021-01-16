@@ -58,4 +58,8 @@ public class EmployeeService {
 	public void deleteEmployeeDetails(Long id) {
 		employeeRepository.deleteById(id);
 	}
+	
+	public boolean isExist(Long id) {
+		return employeeRepository.existsById(id);
+	}
 }
