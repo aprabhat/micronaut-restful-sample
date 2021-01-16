@@ -43,7 +43,9 @@ public class EmployeeController {
 
 	@Delete("/{id}")
 	public void deleteEmployeeDetails(Long id) {
-		employeeService.deleteEmployeeDetails(id);
+		if(employeeService.isExist(id)) {
+			employeeService.deleteEmployeeDetails(id);
+		}
 	}
 
 }
